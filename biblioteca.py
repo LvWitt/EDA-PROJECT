@@ -1,7 +1,7 @@
 from db import Database
 from livro import Livro
-from produtor import publish, publish2, publish_emprestimo
-from consts import TIPOS_DE_LIVROS
+from produtor1 import publish, publish_search, publish_emprestimo
+from consts import GENEROS_DE_LIVROS
 import json
 
 class Biblioteca:
@@ -9,30 +9,26 @@ class Biblioteca:
         self.livros = {}
 
     def cadastrar(self, db):
-        #codigo = int(input("\nDigite o Código: "))
         nome = input("Digite o Nome: ")
         editora = input("Digite a Editora: ")
         ano = input("Digite o Ano: ")
-        tipos_disponiveis = ", ".join(TIPOS_DE_LIVROS)
-        tipo = input("Digite o tipo do livro em numero (Tipos disponíveis: {}): ".format(tipos_disponiveis))
+        generos_disponiveis = ", ".join(GENEROS_DE_LIVROS)
+        genero = input("Digite o genero do livro em numero \n(Gêneros disponíveis: {}): ".format(generos_disponiveis))
 
-        novoLivro = Livro( nome, editora, ano,tipo)
+        novoLivro = Livro( nome, editora, ano, genero)
         inserted_id = db.insert_book(novoLivro)
         novoLivro.set_codigo(inserted_id)
-        publish('criar_livro', json.dumps(novoLivro.to_dict()), novoLivro.tipo)
+        publish('criar_livro', json.dumps(novoLivro.to_dict()), novoLivro.genero)
 
     def consultar(self):
-        #return self.livros
-        buscar = input("\nBusca (digite 'todos' para listar todos os livros): ")
-        publish2('buscar_livro', json.dumps(buscar))
-        #chamar consumidor para esperar o retorno do publish
-        #fazer print
+        buscar = input("\nDigite Codigo/Nome (digite 'todos' para listar todos os livros)\n: ")
+        publish_search('buscar_livro', json.dumps(buscar))
     
     def emprestar(self):
         codigo_buscar = int(input("\nBusca por codigo do livro: "))
         db = Database()
         livro = db.fetch_available_book_by_id(codigo_buscar)
-        #print(livro)
+
         if len(livro)>0:
             print(f"Item {codigo_buscar} disponível para empréstimo.")
             continuar = input("\nDeseja continuar o empréstimo? (s/n) ")
