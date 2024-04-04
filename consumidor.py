@@ -2,7 +2,7 @@
 import random
 import threading
 import pika, json
-from tipos_livros import TIPOS_DE_LIVROS
+from consts import TIPOS_DE_LIVROS
 
 def callback(ch, method, properties, body):
     DecodificaParaString= body.decode('utf-8')

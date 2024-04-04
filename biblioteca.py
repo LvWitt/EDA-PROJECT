@@ -1,7 +1,7 @@
 from db import Database
 from livro import Livro
 from produtor import publish, publish2, publish_emprestimo
-from tipos_livros import TIPOS_DE_LIVROS
+from consts import TIPOS_DE_LIVROS
 import json
 
 class Biblioteca:

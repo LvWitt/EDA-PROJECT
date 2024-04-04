@@ -1,3 +1,6 @@
+from consts import TIPOS_DE_LIVROS
+
+
 class Livro:
     def __init__(self, nome, editora, ano,tipo):
         #self.codigo = codigo
@@ -8,7 +11,7 @@ class Livro:
         self.tipo = tipo
 
     def __str__(self):
-        return f"{self.codigo} : {self.nome}, {self.editora}, {self.ano}, {self.situacao}"
+        return f"{self.codigo} : {self.nome}, {self.editora}, {self.ano}, {self.situacao}, {TIPOS_DE_LIVROS[self.tipo]}"
 
     def to_dict(self):
         return {
