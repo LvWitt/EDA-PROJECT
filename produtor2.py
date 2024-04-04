@@ -3,7 +3,7 @@ import random
 import time
 from db import Database
 from livro import Livro
-from produtor import publish
+from produtor1 import publish
 from consts import *
 
 def run():
@@ -14,7 +14,7 @@ def run():
         inserted_id = db.insert_book(novoLivro)
         novoLivro.set_codigo(inserted_id)
         print("\nLivro cadastrado:", novoLivro)
-        publish('criar_livro', json.dumps(novoLivro.to_dict()), str(novoLivro.tipo))
+        publish('criar_livro', json.dumps(novoLivro.to_dict()), str(novoLivro.genero))
         time.sleep(4)
 
 run()

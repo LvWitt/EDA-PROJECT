@@ -1,4 +1,5 @@
-TIPOS_DE_LIVROS = ["História(0)", "Geografia(1)", "Romance(2)",  "Fantasia(3)",  "Poesia(4)"]
+GENEROS_DE_LIVROS = ["História(0)", "Geografia(1)", "Romance(2)",  "Fantasia(3)",  "Poesia(4)",  "Outros(5)"]
+
 ANOS = list(range(2000, 2025))
 EDITORAS = [
     "Editora Arco-Íris",

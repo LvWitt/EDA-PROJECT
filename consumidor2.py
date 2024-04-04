@@ -12,6 +12,7 @@ channel.queue_declare(queue='busca')
 db = Database()
 
 def callback(ch, method, properties, body):
+    achou = 0
     print('Received in Busca\n')
     DecodificaParaString= body.decode('utf-8')
     Desserializa = json.loads(DecodificaParaString)
@@ -21,24 +22,23 @@ def callback(ch, method, properties, body):
         if OpcaoBuscar.isdigit():
             buscar_codigo = int(OpcaoBuscar)
             livros = db.fetch_books_by_id(buscar_codigo)
-            for livro in livros:
-                print(f"{livro}\n")
         elif OpcaoBuscar == "todos":
             livros = db.fetch_all_books()
-            for livro in livros:
-                print(f"{livro}\n")
+
         else:
             livros = db.fetch_books_from_str(OpcaoBuscar)
-            for livro in livros:
-                print(f"{livro}\n")
+            
+        for livro in livros:
+            achou = 1
+            print(f"{livro}\n")
+        
+        if not achou:
+            print("Livro não foi encontrado!\n")
 
 channel.basic_consume(queue='busca', on_message_callback=callback, auto_ack=True)
 
-print('Started Consuming')
+print('Consumidor 2 - Started Consuming - Busca')
 
 channel.start_consuming()
 
 channel.close()
-
-
-

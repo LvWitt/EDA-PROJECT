@@ -8,11 +8,11 @@ class Database:
 
     def create_tables(self):
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS livro(codigo INTEGER PRIMARY KEY, nome TEXT, editora TEXT, ano INTEGER, situacao TEXT, tipo TEXT)")
+            "CREATE TABLE IF NOT EXISTS livro(codigo INTEGER PRIMARY KEY, nome TEXT, editora TEXT, ano INTEGER, situacao TEXT, genero TEXT)")
 
     def insert_book(self, livro):
         query = "INSERT INTO livro VALUES (NULL, ?, ?,?,?,?)"
-        livro_data = (livro.nome, livro.editora, livro.ano, livro.situacao, livro.tipo)
+        livro_data = (livro.nome, livro.editora, livro.ano, livro.situacao, livro.genero)
         self.cursor.execute(query, livro_data)
         self.conn.commit()
         return self.cursor.lastrowid

@@ -8,9 +8,9 @@ def main():
     db.create_tables()
     sair = 0
     while sair == 0:
-        os.system('printf "\033c"')
+        os.system('cls')
         comando = input("\n-----GERÊNCIAMENTO-BIBLIOTECA-----\n\nMenu:\n1- Cadastro\n2- Consulta\n3- Empréstimo\n4- Sair\nDigite uma opção: ")
-        os.system('printf "\033c"')
+        os.system('cls')
         repetir = "s"
 
         if comando == "1":
