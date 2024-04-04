@@ -15,6 +15,6 @@ def run():
         novoLivro.set_codigo(inserted_id)
         print("\nLivro cadastrado:", novoLivro)
         publish('criar_livro', json.dumps(novoLivro.to_dict()), str(novoLivro.tipo))
-        time.sleep(5)
+        time.sleep(4)
 
 run()
